@@ -1,0 +1,4 @@
+"main.obj",
+"DS18B20.obj" 
+TO "Proj_DS18B20" 
+RAMSIZE(256) 

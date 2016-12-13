@@ -1,0 +1,69 @@
+Field=Comment~String~Comment~100|Field=Description~String~Description~100|Field=Designator~String~Designator~100|Field=Footprint~String~Footprint~100|Field=LibRef~String~LibRef~100|Field=Quantity~Integer~Quantity~100|ReportField=ProjectFileName~PCB_PROJECT1.PRJPCB|ReportField=ProjectFullPath~F:\课内资料文档\51开发板2016.3廖家敏\PCB_PROJECT1.PRJPCB|ReportField=Title~Bill of Materials For PCB Document [2016.PcbDoc]|ReportField=TotalQuantity~132|ReportField=ReportTime~11:06:26|ReportField=ReportDate~2016/3/3|ReportField=ReportDateTime~2016/3/3 11:06:26|ReportField=OutputName~Bill of Materials|ReportField=OutputType~BOM_PartType|ReportField=GeneratorName~ReportComponents|ReportField=GeneratorDescription~Component Reports|ReportField=VariantName~None|ReportField=DataSourceFileName~2016.PcbDoc|ReportField=DataSourceFullPath~F:\课内资料文档\51开发板2016.3廖家敏\2016.PcbDoc
+Bridge|Full Wave Diode Bridge|Bridge|E-BIP-P4/D10|Bridge1|1
+BUZZER(AC)||BZ1|RB5-10.5|BUZZER|1
+0.1uF|Capacitor|C1, C2, C3, C9, C10, C13, C14, C15, C16|RAD0.1-1|CAP|9
+|Capacitor|C4, C5, C6, C7, C8|RAD0.1-1|Cap|5
+104|Capacitor|C11|R1/4|Cap|1
+0.1uF||C12|R1/4|CAP|1
+30pF||C17, C18, C19, C20|RAD0.1-1|CAP|4
+470uF|Polarized Capacitor (Radial)|C21|470UF|Cap Pol1|1
+1000uF|Polarized Capacitor (Radial)|C22|1000UF|Cap Pol1|1
+10uF|Polarized Capacitor (Radial)|C23|10UF|Cap Pol1|1
+104|Capacitor|C24|RAD0.1-1|Cap|1
+Cap|Capacitor|C42|R1/4|Cap|1
+CH340G||CH1|CH1|CH340G|1
+LED(GREEN)||D1, D2, D3, D4, D5, D6, D7, D8, D11|LED.1/.16|LED|9
+LED(RED)||D9, D10|LED.1/.16|LED|2
+Diode|Default Diode|D12|Q2|Diode|1
+USB||J2|USB|USB|1
+Header 2|Header, 2-Pin|J3|HDR1X2|Header 2|1
+USER|Connector|J4|HDR1X12|CON12|1
+12864|Header, 20-Pin|J5|HDR1X20|Header 20|1
+1602|Header, 16-Pin|J6|HDR1X16|Header 16|1
+DB9||J7|DSUB1.385-2H9|DB9|1
+Header 5X2|Header, 5-Pin, Dual row|J8|HDR2X5|Header 5X2|1
+Header 4X2|Header, 4-Pin, Dual row|J10|HDR2X4|Header 4X2|1
+PS2-6PIN|6 Pin Through Hole PS2 Socket (Kycon P/N)|J11|PS2-6PIN|PS2-6PIN|1
+Header 8|Header, 8-Pin|J13, J14|HDR1X8|Header 8|2
+Header 3X2|Header, 3-Pin, Dual row|J15|HDR2X3|Header 3X2|1
+DIANYUAN|Header, 3-Pin|J16|POWER|Header 3|1
+Component_1||J17|JCT|Component_1|1
+SW-PB|Switch|K0, K1, K2, K3, K4, K5, K6, K7, K8, K9, K10, K11, K12, K13, K14, K15|SWITCH|SW-PB|16
+KEY||K16, K17|SWITCH|SW-PB|2
+KEY||K18|SWITCH2|KEY-4|1
+RST按钮|Switch|K19|SWITCH|SW-PB|1
+Header 4|Header, 4-Pin|P10, P11|HDR1X4|Header 4|2
+Header 20|Header, 20-Pin|Pu1, Pu2|HDR1X20|Header 20|2
+8550||Q1|Q1|PNP|1
+1K|Resistor|R1, R2, R3, R4, R5, R6, R7, R8|R1/4|Res2|8
+1kΩ||R9, R10|R1/4|RES|2
+10kΩ||R11|R1/4|RES|1
+10K|Resistor|R12, R13, R14|R1/4|Res2|3
+300|Resistor|R15, R16, R17|R1/4|Res2|3
+4.7kΩ||R18, R20|R1/4|RES|2
+4.7k||R19|R1/4|RES2|1
+510|Resistor|R21, R22|R1/4|Res2|2
+100Ω||R23, R24, R25|R1/4|RES|3
+10k|Connector|RPZ1, RPZ2|SIP09|CON9|2
+56k|Potentiometer|RW1|VR5|POT2|1
+100k|Potentiometer|RW2|VR5|POT2|1
+|Tapped Resistor|RW3|VR5|Res Tap|1
+SW DIP-8|DIP Switch|SW1, SW2|DIP-16-KEY|SW DIP-8|2
+8051|CPU|U1|DIP40_1|8051|1
+DM74LS573N|Octal D Latch with 3-State Output|U2|DIP20|DM74LS573N|1
+MAX232||U3|DIP-16|SP232(LOGIC)|1
+62256||U4|DIP28A|62256|1
+DS12887||U5|DIP24|DS12887A|1
+74HC138||U6|DIP-16|74ALS138|1
+8255||U7|DIP40|8255|1
+ADC0809||U8|DIP28A|ADC0808|1
+24C32||U9|DIP-8|yt100.s01_24C16_3|1
+DS18B20||U10|TO-5|DS18B20|1
+74LS02||U11|DIP-14|74LS02|1
+SN74LS04N|Hex Inverter|U12|DIP-14|SN74LS04N|1
+93c46||U13|DIP-8|93c46|1
+74HC595||U14, U15|DIP-16|Component_1|2
+共阳数码管||U16|四位数码管|Component_1|1
+Dpy Blue-CA|14.2 mm General Purpose Blue 7-Segment Display: CA, RH DP, Gray Surface|U17, U18|共阴|Dpy Blue-CA|2
+7805|Low-Dropout, 3.3 V Regulator|U19|TO220|A8187SLT|1
+11.0592MHz||Y1, Y2|XTAL2|CRYSTAL|2

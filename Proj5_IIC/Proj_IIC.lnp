@@ -1,0 +1,5 @@
+"iic.obj",
+"main.obj",
+"smg.obj",
+"uart.obj" 
+TO "Proj_IIC" 

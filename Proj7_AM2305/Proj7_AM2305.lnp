@@ -1,0 +1,4 @@
+"am2305.obj",
+"main.obj",
+"uart.obj" 
+TO "Proj7_AM2305" 

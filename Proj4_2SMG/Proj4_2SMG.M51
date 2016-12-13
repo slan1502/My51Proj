@@ -1,0 +1,99 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        12/12/2016  18:49:11  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\INSTALLEDTOOLS\KEIL51\C51\BIN\BL51.EXE main.obj TO Proj4_2SMG
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  main.obj (MAIN)
+  C:\INSTALLEDTOOLS\KEIL51\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  Proj4_2SMG (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            IDATA   0008H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0031H     UNIT         ?PR?_DISPLAY_2SMG?MAIN
+            CODE    0034H     000CH     UNIT         ?C_C51STARTUP
+            CODE    0040H     000AH     UNIT         ?PR?MAIN?MAIN
+            CODE    004AH     000AH     UNIT         ?CO?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   Proj4_2SMG (MAIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN
+  +--> ?PR?_DISPLAY_2SMG?MAIN
+
+?PR?_DISPLAY_2SMG?MAIN
+  +--> ?CO?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  Proj4_2SMG (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00A0H         PUBLIC        P2
+  B:0098H.1       PUBLIC        TI
+  C:0040H         PUBLIC        main
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/12/2016  18:49:11  PAGE 2
+
+
+  B:00A0H.4       PUBLIC        SLCK
+  D:0099H         PUBLIC        SBUF
+  C:004AH         PUBLIC        disp
+  D:0098H         PUBLIC        SCON
+  C:0003H         PUBLIC        _display_2SMG
+  -------         PROC          _DISPLAY_2SMG
+  D:0007H         SYMBOL        num
+  C:0003H         LINE#         5
+  C:0003H         LINE#         6
+  C:0003H         LINE#         7
+  C:0009H         LINE#         8
+  C:0009H         LINE#         10
+  C:0009H         LINE#         11
+  C:0014H         LINE#         12
+  C:0017H         LINE#         13
+  C:0019H         LINE#         14
+  C:001BH         LINE#         15
+  C:001DH         LINE#         16
+  C:002AH         LINE#         17
+  C:002DH         LINE#         18
+  C:002FH         LINE#         19
+  C:0031H         LINE#         20
+  C:0033H         LINE#         21
+  -------         ENDPROC       _DISPLAY_2SMG
+  -------         PROC          MAIN
+  C:0040H         LINE#         23
+  C:0040H         LINE#         24
+  C:0040H         LINE#         25
+  C:0043H         LINE#         26
+  C:0048H         LINE#         27
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+Program Size: data=9.0 xdata=0 code=84
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

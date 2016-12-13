@@ -1,0 +1,43 @@
+C51 COMPILER V9.00   DS12887                                                               05/21/2012 13:56:29 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE DS12887
+OBJECT MODULE PLACED IN DS12887.OBJ
+COMPILER INVOKED BY: D:\keil\C51\BIN\C51.EXE DS12887.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include "DS12887.h"
+   2          #include "uart.h"
+   3          
+   4          struct
+   5          {
+   6                  unsigned char sec;
+   7                  unsigned char min;
+   8                  unsigned char hou;
+   9                  unsigned char week;
+  10                  unsigned char day;
+  11                  unsigned char mon;
+  12                  unsigned char year;
+  13          }TimeType;
+*** WARNING C231 IN LINE 13 OF DS12887.C: 'TimeType': redefinition
+  14          
+  15          void read_DS12887()
+  16          {
+  17   1              //TimeType.sec = DS12887_SEC;
+  18   1              uart_send(DS12887_A);
+  19   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =      8    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      7    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

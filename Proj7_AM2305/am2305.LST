@@ -1,0 +1,85 @@
+C51 COMPILER V9.00   AM2305                                                                06/02/2016 01:03:00 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE AM2305
+OBJECT MODULE PLACED IN am2305.OBJ
+COMPILER INVOKED BY: D:\Installed\ProfessionalTool\Keil\C51\BIN\C51.EXE am2305.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include "am2305.h"
+   2          unsigned char get_byte();
+   3          
+   4          void delay10us(unsigned char t)
+   5          {
+   6   1              while(t--)_nop_();
+   7   1      }
+   8          
+   9          /****************************************
+  10          * 名称：get_am2305
+  11          * 输入：value 保存从am2305读取到的数据
+  12          * 输出：成功返回1 否则0
+  13          * 备注： 
+  14          ****************************************/
+  15          unsigned char get_am2305(unsigned char value[5])
+  16          {
+  17   1              unsigned char us, i;    
+  18   1              AM2305_SDA = 0;         //把总线拉低
+  19   1              delay10us(100);         //延时至少800us
+  20   1              AM2305_SDA = 1;         //释放总线
+  21   1              delay10us(2);
+  22   1              if(!AM2305_SDA)
+  23   1              {
+  24   2                      EA = 0;                         //关闭总中断，确保连续读取am2305
+  25   2                      while(!AM2305_SDA);
+  26   2                      while(AM2305_SDA);      //等待约80us的高电平响应信号
+  27   2                      for(i=0;i<5;i++)
+  28   2                      {
+  29   3                              value[i] = get_byte();
+  30   3                      }
+  31   2                      EA = 1;                         //数据接收完毕后重新打开总中断
+  32   2                      return 1;                       //数据采集成功返回1
+  33   2              }
+  34   1              return 0;
+  35   1      }
+*** WARNING C280 IN LINE 17 OF AM2305.C: 'us': unreferenced local variable
+  36          
+  37          /****************************************
+  38          * 名称：get_bit
+  39          * 输入：无
+  40          * 输出：无
+  41          * 备注：从am2305读取一位数据 
+  42          ****************************************/
+  43          unsigned char get_byte()
+  44          {
+  45   1              unsigned char i, buffer;
+  46   1              buffer = 0;
+  47   1              for(i=0;i<8;i++)
+  48   1              {
+  49   2                      while(!AM2305_SDA);
+  50   2                      delay10us(2);
+  51   2                      buffer <<= 1;                   
+  52   2                      buffer |= AM2305_SDA;
+  53   2                      while(AM2305_SDA);
+  54   2              }
+C51 COMPILER V9.00   AM2305                                                                06/02/2016 01:03:00 PAGE 2   
+
+  55   1              return buffer;
+  56   1      }
+  57          
+  58                          
+  59          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    111    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       5
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,101 @@
+C51 COMPILER V9.00   MAIN                                                                  05/19/2016 21:53:30 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: D:\Installed\ProfessionalTool\Keil\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include <reg51.h>
+   2          
+   3          unsigned char UART_buff;                //存放接受到的数据
+   4          bit REC_flag=0, SEND_flag=1;    //串口数据 接收 发送 完毕的标志位
+   5          
+   6          void uart_int();                                                                        //串口初始化函数
+   7          unsigned char uart_send(unsigned char send_data);       //串口发送数据函数
+   8          
+   9          void main()
+  10          {
+  11   1              unsigned char t=0;
+  12   1              P1 = 0xaa;
+  13   1              uart_int();
+  14   1              EA  = 1;
+  15   1              uart_send(0xab);
+  16   1              while(1)
+  17   1              {
+  18   2                      if(SEND_flag==1)
+  19   2                      {
+  20   3                              uart_send(t++);
+  21   3                      }
+  22   2              }
+  23   1      }
+  24          
+  25          /****************************************
+  26          * 名称：uart_int
+  27          * 输入：无
+  28          * 输出：无
+  29          * 备注：默认波特率为9600 
+  30          ****************************************/
+  31          void uart_int()
+  32          {
+  33   1              SCON = 0x50;   //串口方式1, 8-n-1, 允许接收.  
+  34   1          TMOD = 0x20;   //T1方式2  
+  35   1          TH1 = 0xFD;    //9600bps@11.0592MHz[/url]  
+  36   1          TL1 = 0xFD;  
+  37   1          TR1 = 1;                          
+  38   1          ES  = 1;       //开中断.  
+  39   1      }
+  40          
+  41          /****************************************
+  42          * 名称：uart_send
+  43          * 输入：send_data 发送的数据
+  44          * 输出：err 发送是否成功
+  45          * 备注：串口发送一个字节
+  46          ****************************************/
+  47          unsigned char uart_send(unsigned char send_data)
+  48          {
+  49   1              if(SEND_flag==1)        //检测上一次发送是否完成
+  50   1              {
+  51   2                      SBUF = send_data;
+  52   2                      SEND_flag = 0;
+  53   2                      return 1;
+  54   2              }
+  55   1              return 0;               
+C51 COMPILER V9.00   MAIN                                                                  05/19/2016 21:53:30 PAGE 2   
+
+  56   1      }
+  57          /*------------------------------------------------------*/
+  58          /****************************************
+  59          * 名称：uart_interrupt
+  60          * 输入：无
+  61          * 输出：无
+  62          * 备注：串口中断处理函数
+  63          ****************************************/
+  64          void uart_interrupt() interrupt 4
+  65          {
+  66   1              if(RI==1)       //接收中断
+  67   1              {
+  68   2                      RI = 0;
+  69   2                      UART_buff = SBUF;       //获取接收数据
+  70   2                      REC_flag = 1;           //接收到数据标志位
+  71   2              }else{          //发送中断
+  72   2                      TI = 0;
+  73   2                      SEND_flag = 1;
+  74   2              }
+  75   1      }
+  76          /*------------------------------------------------------*/
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     74    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      2    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

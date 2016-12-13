@@ -1,0 +1,87 @@
+C51 COMPILER V9.00   MAIN                                                                  06/01/2016 10:02:48 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: D:\Installed\ProfessionalTool\Keil\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include <reg51.h>
+   2          #include "uart.h"
+   3          #include "smg.h"
+   4          #include "iic.h"
+   5          
+   6          void delayms(uint t)
+   7          {
+   8   1              uchar k;
+   9   1              while(t--)
+  10   1              {
+  11   2                      for(k=0;k<120;k++);
+  12   2              }
+  13   1      }
+  14          
+  15          void sendbyte(uchar num, uint addr)
+  16          {
+  17   1              iic_start();
+  18   1              iic_write_byte(0xa0);
+  19   1              iic_get_ack();
+  20   1              iic_write_byte(addr>>8);
+  21   1              iic_get_ack();
+  22   1              iic_write_byte(addr);
+  23   1              iic_get_ack();
+  24   1              iic_write_byte(num);
+  25   1              iic_get_ack();
+  26   1              iic_stop();
+  27   1              delayms(10);
+  28   1      }
+  29          
+  30          uchar readbyte(uchar addr)
+  31          {
+  32   1              uchar dat;
+  33   1              iic_start();
+  34   1              iic_write_byte(0xa0);
+  35   1              iic_get_ack();
+  36   1              iic_write_byte(addr>>8);
+  37   1              iic_get_ack();
+  38   1              iic_write_byte(addr);
+  39   1              iic_get_ack();
+  40   1              iic_start();
+  41   1              iic_write_byte(0xa1);
+  42   1              iic_get_ack();
+  43   1              dat = iic_read_byte();
+  44   1              iic_get_ack();
+  45   1              iic_stop();
+  46   1              //delayms(30);
+  47   1              return dat;
+  48   1      }       
+  49          void main()
+  50          {
+  51   1              uint d, t;
+  52   1              uart_int();
+  53   1              for(d=0;d<0x0f;d++)
+  54   1              {
+  55   2                      t = readbyte(d);
+C51 COMPILER V9.00   MAIN                                                                  06/01/2016 10:02:48 PAGE 2   
+
+  56   2                      while(!uart_send(t));
+  57   2                      sendbyte(t+1,d);
+  58   2              }
+  59   1              while(1)
+  60   1              {
+  61   2              }
+  62   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    184    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       9
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

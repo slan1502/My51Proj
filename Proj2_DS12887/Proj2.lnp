@@ -1,0 +1,5 @@
+"main.obj",
+"DS12887.obj",
+"uart.obj",
+"smg.obj" 
+TO "Proj2" 

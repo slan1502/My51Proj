@@ -1,0 +1,251 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        05/23/2012  16:42:24  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+D:\KEIL\C51\BIN\BL51.EXE main.obj, DS12887.obj, uart.obj, smg.obj TO Proj2
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  main.obj (MAIN)
+  DS12887.obj (DS12887)
+  uart.obj (UART)
+  smg.obj (SMG)
+  D:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+  D:\KEIL\C51\LIB\C51S.LIB (?C?UIDIV)
+  D:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  Proj2 (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0007H     UNIT         ?DT?DS12887
+            DATA    000FH     0002H     UNIT         _DATA_GROUP_
+            DATA    0011H     0001H     UNIT         ?DT?UART
+                    0012H     000EH                  *** GAP ***
+            BIT     0020H.0   0000H.2   UNIT         ?BI?UART
+                    0020H.2   0000H.6                *** GAP ***
+            IDATA   0021H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0019H     UNIT         ?PR?MAIN?MAIN
+            CODE    001CH     0005H     UNIT         ?C_INITSEG
+                    0021H     0002H                  *** GAP ***
+            CODE    0023H     0003H     ABSOLUTE     
+            CODE    0026H     008CH     UNIT         ?C_C51STARTUP
+            CODE    00B2H     0056H     UNIT         ?PR?_DISPLAY_4SMG?SMG
+            CODE    0108H     0055H     UNIT         ?C?LIB_CODE
+            CODE    015DH     0016H     UNIT         ?PR?_DELAY?MAIN
+            CODE    0173H     0014H     UNIT         ?CO?SMG
+            CODE    0187H     0013H     UNIT         ?PR?UART_INT?UART
+            CODE    019AH     0012H     UNIT         ?PR?_DELAY_SMG?SMG
+            CODE    01ACH     0010H     UNIT         ?PR?UART_INTERRUPT?UART
+            CODE    01BCH     000DH     UNIT         ?PR?_UART_SEND?UART
+            CODE    01C9H     0008H     UNIT         ?PR?READ_DS12887?DS12887
+
+
+
+OVERLAY MAP OF MODULE:   Proj2 (MAIN)
+
+
+SEGMENT                            DATA_GROUP 
+  +--> CALLED SEGMENT            START    LENGTH
+------------------------------------------------
+BL51 BANKED LINKER/LOCATER V6.22                                                      05/23/2012  16:42:24  PAGE 2
+
+
+?C_C51STARTUP                    -----    -----
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN                    -----    -----
+  +--> ?PR?UART_INT?UART
+  +--> ?PR?_DISPLAY_4SMG?SMG
+
+?PR?_DISPLAY_4SMG?SMG            000FH    0002H
+  +--> ?CO?SMG
+  +--> ?PR?_DELAY_SMG?SMG
+
+
+
+SYMBOL TABLE OF MODULE:  Proj2 (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:015DH         PUBLIC        _delay
+  C:0003H         PUBLIC        main
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        t
+  -------         DO            
+  D:0005H         SYMBOL        k
+  -------         ENDDO         
+  C:015DH         LINE#         5
+  C:015DH         LINE#         6
+  C:015DH         LINE#         8
+  C:0167H         LINE#         9
+  C:0167H         LINE#         10
+  C:0172H         LINE#         11
+  C:0172H         LINE#         12
+  -------         ENDPROC       _DELAY
+  -------         PROC          MAIN
+  C:0003H         LINE#         14
+  C:0003H         LINE#         15
+  C:0003H         LINE#         16
+  C:0006H         LINE#         19
+  C:000CH         LINE#         20
+  C:0010H         LINE#         22
+  C:0010H         LINE#         23
+  C:0010H         LINE#         26
+  C:001AH         LINE#         27
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        DS12887
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:01C9H         PUBLIC        read_DS12887
+  D:0008H         PUBLIC        TimeType
+  -------         PROC          READ_DS12887
+  C:01C9H         LINE#         15
+  C:01C9H         LINE#         16
+  C:01C9H         LINE#         18
+BL51 BANKED LINKER/LOCATER V6.22                                                      05/23/2012  16:42:24  PAGE 3
+
+
+  -------         ENDPROC       READ_DS12887
+  -------         ENDMOD        DS12887
+
+  -------         MODULE        UART
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  B:00A8H.7       PUBLIC        EA
+  C:01ACH         PUBLIC        uart_interrupt
+  B:00A8H.4       PUBLIC        ES
+  B:0098H.0       PUBLIC        RI
+  B:0098H.1       PUBLIC        TI
+  B:0020H.0       PUBLIC        SEND_flag
+  D:0099H         PUBLIC        SBUF
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:0011H         PUBLIC        UART_buff
+  C:01BCH         PUBLIC        _uart_send
+  D:008DH         PUBLIC        TH1
+  D:008BH         PUBLIC        TL1
+  B:0020H.1       PUBLIC        REC_flag
+  B:0088H.6       PUBLIC        TR1
+  C:0187H         PUBLIC        uart_int
+  -------         PROC          UART_INT
+  C:0187H         LINE#         12
+  C:0187H         LINE#         13
+  C:0187H         LINE#         14
+  C:018AH         LINE#         15
+  C:018DH         LINE#         16
+  C:0190H         LINE#         17
+  C:0193H         LINE#         18
+  C:0195H         LINE#         19
+  C:0197H         LINE#         20
+  C:0199H         LINE#         21
+  -------         ENDPROC       UART_INT
+  -------         PROC          _UART_SEND
+  D:0007H         SYMBOL        send_data
+  C:01BCH         LINE#         29
+  C:01BCH         LINE#         30
+  C:01BCH         LINE#         31
+  C:01BFH         LINE#         32
+  C:01BFH         LINE#         33
+  C:01C1H         LINE#         34
+  C:01C3H         LINE#         35
+  C:01C6H         LINE#         36
+  C:01C6H         LINE#         37
+  C:01C8H         LINE#         38
+  -------         ENDPROC       _UART_SEND
+  -------         PROC          UART_INTERRUPT
+  C:01ACH         LINE#         46
+  C:01ACH         LINE#         48
+  C:01AFH         LINE#         49
+  C:01AFH         LINE#         50
+  C:01B1H         LINE#         51
+  C:01B4H         LINE#         52
+  C:01B6H         LINE#         53
+  C:01B7H         LINE#         54
+  C:01B9H         LINE#         55
+  C:01BBH         LINE#         56
+BL51 BANKED LINKER/LOCATER V6.22                                                      05/23/2012  16:42:24  PAGE 4
+
+
+  C:01BBH         LINE#         57
+  -------         ENDPROC       UART_INTERRUPT
+  -------         ENDMOD        UART
+
+  -------         MODULE        SMG
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  C:0173H         PUBLIC        Num_Data
+  C:0183H         PUBLIC        Num_addr
+  C:019AH         PUBLIC        _delay_smg
+  C:00B2H         PUBLIC        _display_4SMG
+  -------         PROC          _DELAY_SMG
+  D:0007H         SYMBOL        t
+  -------         DO            
+  D:0006H         SYMBOL        k
+  -------         ENDDO         
+  C:019AH         LINE#         6
+  C:019AH         LINE#         7
+  C:019AH         LINE#         9
+  C:01A0H         LINE#         10
+  C:01A0H         LINE#         11
+  C:01ABH         LINE#         12
+  C:01ABH         LINE#         13
+  -------         ENDPROC       _DELAY_SMG
+  -------         PROC          _DISPLAY_4SMG
+  D:000FH         SYMBOL        num
+  -------         DO            
+  D:0003H         SYMBOL        i
+  D:0002H         SYMBOL        P1_temp
+  -------         ENDDO         
+  C:00B2H         LINE#         21
+  C:00B6H         LINE#         22
+  C:00B6H         LINE#         24
+  C:00C1H         LINE#         25
+  C:00C1H         LINE#         26
+  C:00C4H         LINE#         27
+  C:00C4H         LINE#         28
+  C:00C6H         LINE#         29
+  C:00C6H         LINE#         30
+  C:00C8H         LINE#         31
+  C:00CFH         LINE#         32
+  C:00E8H         LINE#         33
+  C:00F7H         LINE#         34
+  C:00FCH         LINE#         35
+  C:00FEH         LINE#         36
+  C:0101H         LINE#         37
+  C:0105H         LINE#         38
+  C:0107H         LINE#         39
+  -------         ENDPROC       _DISPLAY_4SMG
+  -------         ENDMOD        SMG
+
+  -------         MODULE        ?C?UIDIV
+  C:0108H         PUBLIC        ?C?UIDIV
+  -------         ENDMOD        ?C?UIDIV
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+BL51 BANKED LINKER/LOCATER V6.22                                                      05/23/2012  16:42:24  PAGE 5
+
+
+    SEGMENT: ?PR?_DELAY?MAIN
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READ_DS12887?DS12887
+
+Program Size: data=19.2 xdata=0 code=463
+LINK/LOCATE RUN COMPLETE.  2 WARNING(S),  0 ERROR(S)

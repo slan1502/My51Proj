@@ -1,0 +1,123 @@
+C51 COMPILER V9.01   MAIN                                                                  12/12/2016 18:58:13 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: C:\InstalledTools\Keil51\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include <reg51.h>
+   2          #include <ABSACC.h>
+   3          
+   4          #define uchar unsigned char
+   5          #define uint unsigned int
+   6          #define COM8255 XBYTE[0XFFFF]
+   7          #define PA8255  XBYTE[0XFFFC]
+   8          #define PB8255  XBYTE[0XFFFD]
+   9          #define PC8255  XBYTE[0XFFFE]
+  10          
+  11          code unsigned char disp[] = {0xfc, 0x0c, 0xda, 0xf2, 0x66, 0xb6, 0xbe, 0xe0, 0xfe, 0xf6};
+  12          code unsigned char keyNum[] = {0xee, 0xde, 0xbe, 0x7e,  \
+  13                                                                     0xed, 0xdd, 0xbd, 0x7d,      \
+  14                                                                     0xeb, 0xdb, 0xbb, 0x7b,      \
+  15                                                                     0xe7, 0xd7, 0xb7, 0x77};
+  16          
+  17          sbit SLCK = P2^4;
+  18          
+  19          sbit P1_2 = P1^2;
+  20          sbit P1_1 = P1^1;
+  21          sbit P1_0 = P1^0;
+  22          
+  23          uchar keyScan();
+  24          void display_2SMG(unsigned char num);
+  25          void delay(uchar t)
+  26          {
+  27   1              uchar k;
+  28   1              while(t--)
+  29   1              {
+  30   2                      for(k=0;k<100;k++);
+  31   2              }
+  32   1      }
+  33          
+  34          void main()
+  35          {
+  36   1              uchar get_key, i;
+  37   1              SCON = 0X00;
+  38   1              display_2SMG(99);
+  39   1              while(1)
+  40   1              {
+  41   2                      get_key = keyScan();    //得到按键码
+  42   2                      //查询按键码对应的按键号 输出到2位数码管中
+  43   2                      for(i=0; i<16; i++)
+  44   2                      {
+  45   3                              if(keyNum[i]==get_key)
+  46   3                              {
+  47   4                                      display_2SMG(i);
+  48   4                                      break;
+  49   4                              }
+  50   3                      }       
+  51   2              }
+  52   1      }
+  53          
+  54          /*矩阵键盘扫描函数*/
+  55          uchar keyScan()
+C51 COMPILER V9.01   MAIN                                                                  12/12/2016 18:58:13 PAGE 2   
+
+  56          {
+  57   1              uchar keyGet=0xff, i;
+  58   1              //通过138译码器选中8255片选
+  59   1              P1_2 = 0;
+  60   1              P1_1 = 1;
+  61   1              P1_0 = 0;
+  62   1              COM8255 = 0X82;         //C口输出 B口输入方式
+  63   1      
+  64   1              for(i=0;i<4;i++)                //从第一行开始扫描到第四行
+  65   1              {
+  66   2                      PC8255 = ~(1<<i);       //C口对应的行输出0 其他1
+  67   2                      if(PB8255 != 0xff)      //检测是否有按键按下
+  68   2                      {                                       //延时 用于消除抖动干扰
+  69   3                              delay(3);
+  70   3                              if(PB8255 != 0xff)
+  71   3                              {
+  72   4                                      keyGet = PC8255&PB8255; //B口高4位和C口低四位组成按键码
+  73   4                                      break;
+  74   4                              }
+  75   3                      }
+  76   2              }
+  77   1              return keyGet;  //返回按键码 没有按键返回0XFF
+  78   1      }
+  79          
+  80          /*两位数码管显示函数*/
+  81          void display_2SMG(unsigned char num)
+  82          {
+  83   1              if(num>99)
+  84   1              {
+  85   2                      return;
+  86   2              }
+  87   1              SBUF = disp[num/10];
+  88   1              while(!TI);
+  89   1              TI = 0;
+  90   1              SLCK = 0;
+  91   1              SLCK = 1;
+  92   1              SBUF = disp[num%10];
+  93   1              while(!TI);
+  94   1              TI = 0;
+  95   1              SLCK = 0;
+  96   1              SLCK = 1;
+  97   1      }
+  98                  
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    172    ----
+   CONSTANT SIZE    =     26    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

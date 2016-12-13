@@ -1,0 +1,22 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+E:\liuke\51¿ª·¢°å³ÌÐò\Proj5_IIC\Proj_IIC.uvproj
+Project File Date:  06/01/2016
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling iic.c...
+compiling main.c...
+compiling smg.c...
+compiling uart.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?IIC_SEND_ACK?IIC
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_4SMG?SMG
+Program Size: data=19.4 xdata=0 code=730
+creating hex file from "Proj_IIC"...
+"Proj_IIC" - 0 Error(s), 2 Warning(s).

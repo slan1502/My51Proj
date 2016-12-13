@@ -1,0 +1,13 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+E:\liuke\51¿ª·¢°å³ÌÐò\Proj6_SPI\Proj6_SPI.uvproj
+Project File Date:  06/01/2016
+
+<h2>Output:</h2>
+compiling spi.c...
+spi.c - 0 Error(s), 0 Warning(s).
+compiling main.c...
+main.c - 0 Error(s), 0 Warning(s).
